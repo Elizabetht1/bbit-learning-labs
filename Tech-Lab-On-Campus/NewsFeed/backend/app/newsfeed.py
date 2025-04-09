@@ -9,12 +9,12 @@ from app.utils.redis import REDIS_CLIENT
 class Article:
     """Dataclass for an article."""
 
-    # author: str
-    # title: str
-    # body: str
-    # publish_date: datetime
-    # image_url: str
-    # url: str
+    author: str
+    title: str
+    body: str
+    publish_date: datetime
+    image_url: str
+    url: str
 
     def __init__(self,*args,**kwargs):
         print(kwargs.keys())
@@ -34,7 +34,6 @@ def get_all_news() -> list[Article]:
     # 2. Format the data into articles
     # 3. Return a list of the articles formatted 
     articlesJSON = REDIS_CLIENT.get_entry('all_articles')
-    print(len(articlesJSON[0]))
     return [Article(**articleJSON) for articleJSON in articlesJSON]
 
 
